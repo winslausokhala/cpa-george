@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AK Auditor &amp; Tax Consultant</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📊</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0B1E38;
+  --navy-2: #12294a;
+  --navy-3: #1a3660;
+  --gold: #C79A3F;
+  --gold-light: #E4C978;
+  --cream: #F7F5F0;
+  --paper: #FFFFFF;
+  --ink: #1B2029;
+  --ink-muted: #5B6270;
+  --line: #E4E1D8;
+  --bg: var(--cream);
+  --surface: var(--paper);
+  --text: var(--ink);
+  --text-muted: var(--ink-muted);
+  --border: var(--line);
+  --radius: 4px;
+  --serif: 'Source Serif 4', Georgia, serif;
+  --sans: 'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --shell-w: min(1180px, 92vw);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d1117;
+    --surface: #151b26;
+    --text: #E9E7DF;
+    --text-muted: #A2A8B4;
+    --border: #262e3d;
+    --cream: #0d1117;
+    --paper: #151b26;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0d1117;
+  --surface: #151b26;
+  --text: #E9E7DF;
+  --text-muted: #A2A8B4;
+  --border: #262e3d;
+  --cream: #0d1117;
+  --paper: #151b26;
+}
+
+* { box-sizing: border-box; }
+html {
+  scroll-padding-top: env(safe-area-inset-top, 0px);
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  -webkit-font-smoothing: antialiased;
+}
+img, svg { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+.shell { width: var(--shell-w); margin: 0 auto; }
+h1, h2, h3, h4 { font-family: var(--serif); font-weight: 600; margin: 0; line-height: 1.15; letter-spacing: -0.01em; }
+p { margin: 0; }
+button { font-family: inherit; cursor: pointer; }
+
+/* ---------- Header ---------- */
+.site-header {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--navy);
+  padding-top: env(safe-area-inset-top, 0px);
+  border-bottom: 1px solid rgba(199,154,63,0.25);
+}
+.header-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 0;
+}
+.brand { display: flex; align-items: center; gap: 12px; }
+.brand-mark {
+  width: 44px; height: 44px; border-radius: 3px;
+  border: 1.5px solid var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--serif); font-weight: 700; font-size: 17px;
+  color: var(--gold-light); flex-shrink: 0;
+}
+.brand-text .name { color: #fff; font-family: var(--serif); font-weight: 600; font-size: 17px; letter-spacing: 0.02em; white-space: nowrap; }
+.brand-text .tag { color: var(--gold-light); font-size: 11px; letter-spacing: 0.06em; margin-top: 2px; }
+
+nav.primary-nav { display: flex; align-items: center; gap: 30px; }
+nav.primary-nav a {
+  color: #D9DEE7; font-size: 14.5px; font-weight: 500; padding: 6px 0;
+  border-bottom: 2px solid transparent; transition: color .15s, border-color .15s;
+}
+nav.primary-nav a:hover, nav.primary-nav a.active { color: #fff; border-bottom-color: var(--gold); }
+
+.header-actions { display: flex; align-items: center; gap: 18px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 11px 22px; border-radius: 3px; font-size: 14px; font-weight: 600;
+  border: 1.5px solid transparent; white-space: nowrap; transition: transform .12s, background .15s, border-color .15s, color .15s;
+}
+.btn:active { transform: translateY(1px); }
+.btn-gold { background: var(--gold); color: var(--navy); }
+.btn-gold:hover { background: var(--gold-light); }
+.btn-outline-light { border-color: rgba(255,255,255,0.55); color: #fff; }
+.btn-outline-light:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
+.btn-outline-navy { border-color: var(--navy); color: var(--navy); }
+:root[data-theme="dark"] .btn-outline-navy, @media (prefers-color-scheme: dark) { }
+.btn-outline-navy:hover { background: var(--navy); color: #fff; }
+
+.menu-toggle {
+  display: none; background: none; border: none; color: #fff; padding: 6px;
+}
+.menu-toggle svg { width: 26px; height: 26px; }
+
+/* ---------- Footer ---------- */
+.site-footer {
+  background: var(--navy); color: #C7CCD6; padding: 56px 0 28px;
+  padding-bottom: calc(28px + env(safe-area-inset-bottom, 0px));
+  margin-top: 90px;
+}
+.footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.2fr; gap: 40px; }
+.footer-grid h4 { color: #fff; font-family: var(--sans); font-size: 13px; letter-spacing: 0.05em; margin-bottom: 16px; font-weight: 600; }
+.footer-grid ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.footer-grid a { color: #C7CCD6; font-size: 14px; }
+.footer-grid a:hover { color: var(--gold-light); }
+.footer-brand .name { color: #fff; font-family: var(--serif); font-size: 18px; font-weight: 600; }
+.footer-brand p { font-size: 13.5px; color: #9AA2B0; margin-top: 12px; max-width: 34ch; }
+.footer-social { display: flex; gap: 12px; margin-top: 18px; }
+.footer-social a {
+  width: 34px; height: 34px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.25);
+  display: flex; align-items: center; justify-content: center;
+}
+.footer-social a:hover { border-color: var(--gold); background: rgba(199,154,63,0.12); }
+.footer-social svg { width: 15px; height: 15px; }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.12); margin-top: 40px; padding-top: 22px;
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;
+  font-size: 12.5px; color: #8A93A3;
+}
+
+/* ---------- Shared page building blocks ---------- */
+.page { display: none; }
+.page.active { display: block; }
+
+.eyebrow-line { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+.eyebrow-line .rule { width: 26px; height: 2px; background: var(--gold); }
+.eyebrow-line span { font-size: 12.5px; letter-spacing: 0.08em; color: var(--gold); font-weight: 600; }
+
+.page-hero {
+  background: var(--navy); color: #fff; padding: 64px 0 58px;
+  position: relative; overflow: hidden;
+}
+.page-hero h1 { font-size: clamp(28px, 4vw, 40px); color: #fff; }
+.page-hero .sub { color: #B9C1CF; font-size: 16px; margin-top: 14px; max-width: 62ch; }
+.page-hero .crumb { color: var(--gold-light); font-size: 13px; margin-top: 20px; }
+.page-hero .crumb a:hover { text-decoration: underline; }
+
+section.block { padding: 76px 0; }
+section.block.tight { padding: 52px 0; }
+.section-head { max-width: 640px; margin-bottom: 42px; }
+.section-head h2 { font-size: clamp(24px, 3vw, 32px); }
+.section-head p.lede { color: var(--text-muted); font-size: 16px; margin-top: 12px; }
+
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 30px 26px;
+}
+.icon-tile {
+  width: 46px; height: 46px; border-radius: 3px; background: var(--navy);
+  display: flex; align-items: center; justify-content: center; margin-bottom: 20px;
+}
+.icon-tile svg { width: 22px; height: 22px; stroke: var(--gold-light); }
+.card h3 { font-size: 18px; margin-bottom: 10px; }
+.card p { color: var(--text-muted); font-size: 14.5px; }
+.card .learn { display: inline-flex; align-items: center; gap: 6px; margin-top: 18px; font-size: 13.5px; font-weight: 600; color: var(--navy); }
+:root[data-theme="dark"] .card .learn, .dark-mode-fix { color: var(--gold-light); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .card .learn { color: var(--gold-light); } }
+.card .learn svg { width: 14px; height: 14px; }
+
+.values-strip { background: var(--navy); color: #fff; padding: 34px 0; }
+.values-row { display: flex; justify-content: space-between; }
+.value-item { display: flex; align-items: center; gap: 14px; flex: 1; padding: 0 18px; position: relative; }
+.value-item:not(:first-child)::before {
+  content: ""; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+  width: 1px; height: 34px; background: rgba(255,255,255,0.18);
+}
+.value-item svg { width: 26px; height: 26px; stroke: var(--gold); flex-shrink: 0; }
+.value-item .t { font-weight: 600; font-size: 14.5px; }
+.value-item .s { font-size: 12.5px; color: #A9B1C0; }
+
+.checklist { list-style: none; padding: 0; margin: 20px 0 0; display: flex; flex-direction: column; gap: 10px; }
+.checklist li { display: flex; align-items: center; gap: 10px; font-size: 14.5px; font-weight: 500; }
+.checklist svg { width: 17px; height: 17px; stroke: var(--gold); flex-shrink: 0; }
+
+.stat-list { display: flex; flex-direction: column; gap: 26px; }
+.stat-item { display: flex; align-items: center; gap: 16px; }
+.stat-item .num { font-family: var(--serif); font-size: 30px; font-weight: 700; color: var(--navy); min-width: 84px; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .stat-item .num { color: var(--gold-light); } }
+:root[data-theme="dark"] .stat-item .num { color: var(--gold-light); }
+.stat-item svg { width: 24px; height: 24px; stroke: var(--gold); }
+.stat-item .lbl { font-size: 13px; color: var(--text-muted); }
+
+.cta-band {
+  background: var(--navy); color: #fff; padding: 52px 0; position: relative; overflow: hidden;
+}
+.cta-band .shell { display: flex; align-items: center; justify-content: space-between; gap: 30px; flex-wrap: wrap; position: relative; z-index: 1; }
+.cta-band h2 { color: #fff; font-size: clamp(22px, 3vw, 28px); }
+.cta-band p { color: #B9C1CF; margin-top: 8px; font-size: 15px; }
+
+/* Illustration components */
+.illus-frame { border-radius: 6px; overflow: hidden; border: 1px solid var(--border); background: var(--surface); }
+
+/* Nav mobile */
+.mobile-panel {
+  display: none; position: fixed; inset: 0 0 0 auto; width: min(320px, 84vw); background: var(--navy);
+  z-index: 200; padding: 22px 24px; padding-top: calc(22px + env(safe-area-inset-top, 0px));
+  transform: translateX(100%); transition: transform .25s ease; flex-direction: column; gap: 4px;
+}
+.mobile-panel.open { transform: translateX(0); display: flex; }
+.mobile-panel a { color: #E7EAF0; font-size: 16px; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.mobile-panel .close-btn { align-self: flex-end; background: none; border: none; color: #fff; margin-bottom: 10px; }
+.scrim { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 190; }
+.scrim.open { display: block; }
+
+/* Accordion (Resources FAQ) */
+.faq-item { border-bottom: 1px solid var(--border); }
+.faq-q {
+  width: 100%; text-align: left; background: none; border: none; padding: 20px 0;
+  display: flex; justify-content: space-between; align-items: center; gap: 20px;
+  font-family: var(--serif); font-size: 16.5px; font-weight: 600; color: var(--text);
+}
+.faq-q svg { width: 18px; height: 18px; stroke: var(--gold); flex-shrink: 0; transition: transform .2s; }
+.faq-item.open .faq-q svg { transform: rotate(45deg); }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height .25s ease; }
+.faq-item.open .faq-a { max-height: 300px; }
+.faq-a p { padding: 0 0 20px; color: var(--text-muted); font-size: 14.5px; max-width: 68ch; }
+
+/* Resource + insight cards */
+.resource-card, .insight-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden;
+  display: flex; flex-direction: column;
+}
+.insight-thumb { height: 150px; background: var(--navy); position: relative; }
+.insight-body { padding: 22px 24px 24px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.insight-cat { font-size: 11.5px; letter-spacing: 0.06em; color: var(--gold); font-weight: 700; }
+:root[data-theme="dark"] .insight-cat {}
+.insight-body h3 { font-size: 17px; }
+.insight-body p { color: var(--text-muted); font-size: 14px; flex: 1; }
+.insight-meta { font-size: 12.5px; color: var(--text-muted); border-top: 1px solid var(--border); padding-top: 12px; margin-top: 4px; }
+
+.resource-card { padding: 26px; gap: 12px; }
+.resource-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; }
+.resource-card h3 { font-size: 17px; }
+.resource-card p { color: var(--text-muted); font-size: 14px; margin-top: 6px; }
+
+/* Contact page */
+.contact-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 54px; }
+.contact-method { display: flex; gap: 16px; padding: 20px 0; border-bottom: 1px solid var(--border); }
+.contact-method .ic { width: 42px; height: 42px; border-radius: 50%; background: var(--navy); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.contact-method .ic svg { width: 19px; height: 19px; stroke: var(--gold-light); }
+.contact-method h4 { font-size: 15px; margin-bottom: 4px; }
+.contact-method a, .contact-method .val { color: var(--text-muted); font-size: 14.5px; }
+.contact-method a:hover { color: var(--navy); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .contact-method a:hover { color: var(--gold-light); } }
+
+.form-field { display: flex; flex-direction: column; gap: 7px; margin-bottom: 18px; }
+.form-field label { font-size: 13px; font-weight: 600; }
+.form-field input, .form-field textarea, .form-field select {
+  border: 1px solid var(--border); border-radius: 3px; padding: 12px 14px; font-family: inherit;
+  font-size: 14.5px; background: var(--surface); color: var(--text); width: 100%;
+}
+.form-field input:focus, .form-field textarea:focus, .form-field select:focus {
+  outline: 2px solid var(--gold); outline-offset: 1px; border-color: var(--gold);
+}
+.form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-note { font-size: 12.5px; color: var(--text-muted); margin-top: 4px; }
+.error-msg { color: #B23A2E; font-size: 12.5px; margin-top: 4px; display: none; }
+.error-msg.show { display: block; }
+.success-box {
+  background: rgba(199,154,63,0.12); border: 1px solid var(--gold); border-radius: 4px;
+  padding: 16px 18px; font-size: 14.5px; margin-bottom: 18px; display: none;
+}
+.success-box.show { display: block; }
+
+/* About page bits */
+.timeline { display: flex; flex-direction: column; }
+.tl-item { display: grid; grid-template-columns: 90px 1fr; gap: 22px; padding: 20px 0; border-bottom: 1px solid var(--border); }
+.tl-item:last-child { border-bottom: none; }
+.tl-item .yr { font-family: var(--serif); font-weight: 700; color: var(--navy); font-size: 15px; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tl-item .yr { color: var(--gold-light); } }
+:root[data-theme="dark"] .tl-item .yr { color: var(--gold-light); }
+.tl-item h4 { font-size: 15.5px; margin-bottom: 5px; }
+.tl-item p { color: var(--text-muted); font-size: 14px; }
+
+.credential-row { display: flex; gap: 16px; align-items: flex-start; padding: 18px 0; border-bottom: 1px solid var(--border); }
+.credential-row:last-child { border-bottom: none; }
+.credential-row svg { width: 22px; height: 22px; stroke: var(--gold); flex-shrink: 0; margin-top: 2px; }
+.credential-row h4 { font-size: 15px; margin-bottom: 3px; }
+.credential-row p { font-size: 13.5px; color: var(--text-muted); }
+
+.skip-link {
+  position: absolute; left: -999px; top: 0; background: var(--gold); color: var(--navy);
+  padding: 10px 16px; z-index: 999; border-radius: 3px;
+}
+.skip-link:focus { left: 16px; top: calc(16px + env(safe-area-inset-top, 0px)); }
+
+@media (max-width: 980px) {
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .grid-3 { grid-template-columns: 1fr; }
+  .grid-2 { grid-template-columns: 1fr; gap: 34px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .values-row { flex-wrap: wrap; gap: 20px; }
+  .value-item { min-width: 44%; }
+  .value-item:not(:first-child)::before { display: none; }
+  .contact-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 760px) {
+  nav.primary-nav { display: none; }
+  .header-actions .btn-gold { display: none; }
+  .menu-toggle { display: inline-flex; }
+  .grid-4 { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
+  .form-row-2 { grid-template-columns: 1fr; }
+  section.block { padding: 52px 0; }
+  .cta-band .shell { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+
+<header class="site-header">
+  <div class="shell header-row">
+    <a href="#home" class="brand" aria-label="AK Auditor and Tax Consultant, home">
+      <div class="brand-mark">AK</div>
+      <div class="brand-text">
+        <div class="name">AUDITOR &amp; TAX CONSULTANT</div>
+        <div class="tag">Assurance &nbsp;|&nbsp; Tax &nbsp;|&nbsp; Financial Analytics</div>
+      </div>
+    </a>
+    <nav class="primary-nav" aria-label="Primary">
+      <a href="#home" data-route="home">Home</a>
+      <a href="#about" data-route="about">About</a>
+      <a href="#services" data-route="services">Services</a>
+      <a href="#insights" data-route="insights">Insights</a>
+      <a href="#resources" data-route="resources">Resources</a>
+      <a href="#contact" data-route="contact">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <a href="#contact" class="btn btn-gold">Book a Consultation</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="scrim" id="scrim"></div>
+<nav class="mobile-panel" id="mobilePanel" aria-label="Mobile">
+  <button class="close-btn" id="closeMenu" aria-label="Close menu">
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <a href="#home" data-route="home">Home</a>
+  <a href="#about" data-route="about">About</a>
+  <a href="#services" data-route="services">Services</a>
+  <a href="#insights" data-route="insights">Insights</a>
+  <a href="#resources" data-route="resources">Resources</a>
+  <a href="#contact" data-route="contact">Contact</a>
+</nav>
+
+<main id="main">
+
+<!-- ================= HOME ================= -->
+<section class="page" id="page-home" data-title="AK Auditor &amp; Tax Consultant — Audit, Tax &amp; Financial Analytics">
+
+  <section style="background:var(--navy); color:#fff; padding:56px 0 0; overflow:hidden;">
+    <div class="shell" style="display:grid; grid-template-columns:1.05fr 1fr; gap:44px; align-items:center; padding-bottom:56px;">
+      <div>
+        <div class="eyebrow-line"><span style="color:var(--gold-light)">Trust &nbsp;·&nbsp; Accuracy &nbsp;·&nbsp; Strategy</span></div>
+        <h1 style="font-size:clamp(32px,4.4vw,50px); color:#fff;">Audit. Tax. Analyze.<br><span style="color:var(--gold-light)">Drive better decisions.</span></h1>
+        <p style="color:#C3CAD6; font-size:16.5px; margin-top:20px; max-width:52ch;">Professional audit and assurance services, practical tax consulting, and data-driven financial analytics to help your business grow, remain compliant, and achieve lasting value.</p>
+        <div style="display:flex; gap:14px; margin-top:30px; flex-wrap:wrap;">
+          <a href="#contact" class="btn btn-gold">Get in Touch</a>
+          <a href="#services" class="btn btn-outline-light">Explore Services</a>
+        </div>
+      </div>
+      <div style="position:relative;">
+        <div class="illus-frame" style="background:#0E2140; border-color:rgba(199,154,63,0.3);">
+          <svg viewBox="0 0 520 360" role="img" aria-label="Illustration of a laptop displaying financial charts next to a calculator">
+            <title>Financial analytics illustration</title>
+            <rect width="520" height="360" fill="#0E2140"/>
+            <ellipse cx="260" cy="330" rx="220" ry="18" fill="#081527"/>
+            <rect x="140" y="290" width="240" height="14" rx="3" fill="#1a3660"/>
+            <path d="M150 285 L370 285 L392 90 Q394 78 382 78 L138 78 Q126 78 128 90 Z" fill="#122a4d" stroke="#2c4d80" stroke-width="1.5"/>
+            <rect x="150" y="94" width="220" height="176" fill="#F4F1E9"/>
+            <rect x="164" y="106" width="192" height="20" rx="2" fill="#0B1E38"/>
+            <rect x="170" y="112" width="60" height="8" rx="1" fill="#C79A3F"/>
+            <g>
+              <rect x="164" y="140" width="88" height="70" rx="2" fill="#fff" stroke="#E4E1D8"/>
+              <rect x="172" y="188" width="10" height="16" fill="#0B1E38"/>
+              <rect x="186" y="176" width="10" height="28" fill="#C79A3F"/>
+              <rect x="200" y="164" width="10" height="40" fill="#0B1E38"/>
+              <rect x="214" y="150" width="10" height="54" fill="#C79A3F"/>
+              <rect x="228" y="170" width="10" height="34" fill="#0B1E38"/>
+            </g>
+            <g>
+              <rect x="262" y="140" width="94" height="70" rx="2" fill="#fff" stroke="#E4E1D8"/>
+              <polyline points="270,196 285,178 300,188 316,158 332,168 348,146" fill="none" stroke="#0B1E38" stroke-width="2.5"/>
+              <circle cx="348" cy="146" r="3" fill="#C79A3F"/>
+            </g>
+            <g>
+              <circle cx="200" cy="240" r="26" fill="#fff" stroke="#E4E1D8"/>
+              <path d="M200 240 L200 214 A26 26 0 0 1 222 252 Z" fill="#C79A3F"/>
+              <path d="M200 240 L222 252 A26 26 0 0 1 178 253 Z" fill="#0B1E38"/>
+            </g>
+            <g>
+              <rect x="240" y="216" width="116" height="48" rx="2" fill="#fff" stroke="#E4E1D8"/>
+              <rect x="248" y="224" width="70" height="6" rx="1" fill="#0B1E38"/>
+              <rect x="248" y="236" width="100" height="6" rx="1" fill="#D8D4C8"/>
+              <rect x="248" y="248" width="86" height="6" rx="1" fill="#D8D4C8"/>
+            </g>
+            <rect x="66" y="238" width="70" height="58" rx="4" fill="#1a3660" stroke="#2c4d80"/>
+            <rect x="74" y="246" width="54" height="16" rx="2" fill="#0B1E38"/>
+            <g fill="#C79A3F">
+              <rect x="74" y="268" width="10" height="8" rx="1"/><rect x="88" y="268" width="10" height="8" rx="1"/><rect x="102" y="268" width="10" height="8" rx="1"/><rect x="116" y="268" width="10" height="8" rx="1"/>
+              <rect x="74" y="280" width="10" height="8" rx="1"/><rect x="88" y="280" width="10" height="8" rx="1"/><rect x="102" y="280" width="10" height="8" rx="1"/><rect x="116" y="280" width="10" height="8" rx="1"/>
+            </g>
+            <rect x="356" y="252" width="46" height="38" rx="3" fill="#122a4d" stroke="#2c4d80"/>
+            <rect x="362" y="258" width="34" height="4" fill="#C79A3F"/>
+            <rect x="362" y="266" width="34" height="4" fill="#5B6270"/>
+            <rect x="362" y="274" width="20" height="4" fill="#5B6270"/>
+            <text x="30" y="40" font-family="Source Serif 4, serif" font-style="italic" font-size="17" fill="#C79A3F">Better numbers.</text>
+            <text x="30" y="62" font-family="Source Serif 4, serif" font-style="italic" font-size="17" fill="#C79A3F">Smarter decisions.</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block tight">
+    <div class="shell">
+      <div class="eyebrow-line"><div class="rule"></div><span>OUR SERVICES</span></div>
+      <div class="grid-4">
+        <div class="card">
+          <div class="icon-tile"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M9 4h9a1 1 0 011 1v14a1 1 0 01-1 1H6a1 1 0 01-1-1V8z"/><path d="M8 4v4H4"/><circle cx="11" cy="14" r="3"/><path d="M13.5 16.5L16 19"/></svg></div>
+          <h3>Audit &amp; Assurance</h3>
+          <p>Independent, objective and reliable audit services to enhance transparency and build trust.</p>
+          <a href="#services" class="learn">Learn More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+        <div class="card">
+          <div class="icon-tile"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M5 5l14 14M8 5a3 3 0 100 6 3 3 0 000-6zM16 13a3 3 0 100 6 3 3 0 000-6z"/></svg></div>
+          <h3>Tax Consulting &amp; Compliance</h3>
+          <p>Strategic tax planning, advisory and compliance support to minimize risk and optimize your position.</p>
+          <a href="#services" class="learn">Learn More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+        <div class="card">
+          <div class="icon-tile"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M4 19V9M10 19V5M16 19v-7M20 19H4"/></svg></div>
+          <h3>Financial Analytics</h3>
+          <p>Turn your data into insights. We provide data analysis, financial modelling and business intelligence.</p>
+          <a href="#services" class="learn">Learn More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+        <div class="card">
+          <div class="icon-tile"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><circle cx="9" cy="8" r="3"/><path d="M2 20c0-3.3 3-6 7-6s7 2.7 7 6"/><circle cx="18" cy="9" r="2.4"/><path d="M15.5 14c2.8.3 5 2.3 5 5"/></svg></div>
+          <h3>Business Advisory</h3>
+          <p>Practical guidance for better decisions, improved performance and sustainable growth.</p>
+          <a href="#services" class="learn">Learn More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="values-strip">
+    <div class="shell values-row">
+      <div class="value-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M12 3l8 3v6c0 4.5-3.2 8-8 9-4.8-1-8-4.5-8-9V6z"/></svg><div><div class="t">Integrity</div><div class="s">We do what's right.</div></div></div>
+      <div class="value-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="0.6" fill="var(--gold)"/></svg><div><div class="t">Accuracy</div><div class="s">Numbers you can trust.</div></div></div>
+      <div class="value-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M4 19V9M10 19V5M16 19v-7M20 19H4"/></svg><div><div class="t">Insight</div><div class="s">Data that drives progress.</div></div></div>
+      <div class="value-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M8 12l2.5 2.5L16 9"/><path d="M2 12c0-2.5 1.8-4 4-4 1.4 0 2.3.6 3 1.4M22 12c0-2.5-1.8-4-4-4-1.4 0-2.3.6-3 1.4"/></svg><div><div class="t">Partnership</div><div class="s">Your success is our priority.</div></div></div>
+    </div>
+  </div>
+
+  <section class="block">
+    <div class="shell grid-2">
+      <div class="illus-frame">
+        <svg viewBox="0 0 480 400" role="img" aria-label="Illustration of a leather-bound audit, tax and analytics ledger beside a calculator and pen">
+          <title>Audit Tax Analytics ledger</title>
+          <rect width="480" height="400" fill="#EDEAE1"/>
+          <ellipse cx="240" cy="330" rx="190" ry="16" fill="#DEDACC"/>
+          <g transform="translate(120,60)">
+            <rect x="0" y="0" width="220" height="270" rx="4" fill="#0B1E38"/>
+            <rect x="0" y="0" width="10" height="270" fill="#081527"/>
+            <rect x="18" y="24" width="184" height="222" fill="none" stroke="#C79A3F" stroke-width="1"/>
+            <text x="110" y="100" text-anchor="middle" font-family="Source Serif 4, serif" font-weight="600" font-size="21" fill="#E4C978">AUDIT</text>
+            <text x="110" y="132" text-anchor="middle" font-family="Source Serif 4, serif" font-weight="600" font-size="21" fill="#E4C978">TAX</text>
+            <text x="110" y="164" text-anchor="middle" font-family="Source Serif 4, serif" font-weight="600" font-size="21" fill="#E4C978">ANALYTICS</text>
+          </g>
+          <g transform="translate(300,190)">
+            <rect x="0" y="0" width="80" height="100" rx="6" fill="#1B2029"/>
+            <rect x="8" y="10" width="64" height="22" rx="2" fill="#8FAE8A"/>
+            <g fill="#3a4150">
+              <rect x="8" y="42" width="14" height="12" rx="1"/><rect x="26" y="42" width="14" height="12" rx="1"/><rect x="44" y="42" width="14" height="12" rx="1"/><rect x="62" y="42" width="10" height="12" rx="1"/>
+              <rect x="8" y="58" width="14" height="12" rx="1"/><rect x="26" y="58" width="14" height="12" rx="1"/><rect x="44" y="58" width="14" height="12" rx="1"/><rect x="62" y="58" width="10" height="12" rx="1"/>
+              <rect x="8" y="74" width="14" height="12" rx="1"/><rect x="26" y="74" width="14" height="12" rx="1"/><rect x="44" y="74" width="14" height="12" rx="1" fill="#C79A3F"/><rect x="62" y="74" width="10" height="12" rx="1"/>
+            </g>
+          </g>
+          <g transform="translate(130,300) rotate(-18)">
+            <rect x="0" y="0" width="130" height="7" rx="3.5" fill="#0B1E38"/>
+            <polygon points="130,0 145,3.5 130,7" fill="#C79A3F"/>
+          </g>
+        </svg>
+      </div>
+      <div>
+        <div class="eyebrow-line"><div class="rule"></div><span>WHY WORK WITH ME</span></div>
+        <h2 style="font-size:clamp(24px,3vw,32px);">Experience. Analysis. Results.</h2>
+        <p style="color:var(--text-muted); margin-top:16px; font-size:15.5px;">With a strong background in auditing, tax consulting and financial analytics, George helps individuals and businesses make informed decisions, meet their obligations and unlock opportunities for growth.</p>
+        <ul class="checklist">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 13l4 4L19 7"/></svg>Professional &amp; confidential</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 13l4 4L19 7"/></svg>Tailored solutions</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 13l4 4L19 7"/></svg>Focused on your goals</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="block tight" style="padding-top:0;">
+    <div class="shell" style="display:flex; justify-content:flex-end;">
+      <div class="stat-list" style="min-width:260px;">
+        <div class="stat-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2"/></svg><div><div class="num">5+</div><div class="lbl">Years of professional experience</div></div></div>
+        <div class="stat-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="3"/><path d="M2 20c0-3.3 3-6 7-6s7 2.7 7 6"/><circle cx="18" cy="9" r="2.4"/><path d="M15.5 14c2.8.3 5 2.3 5 5"/></svg><div><div class="num">50+</div><div class="lbl">Clients supported</div></div></div>
+        <div class="stat-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 19V9M10 19V5M16 19v-7M20 19H4"/></svg><div><div class="num">100%</div><div class="lbl">Commitment to excellence</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-band">
+    <div class="shell">
+      <div>
+        <div class="eyebrow-line"><div class="rule"></div><span>LET'S WORK TOGETHER</span></div>
+        <h2>Ready to strengthen your finances?</h2>
+        <p>Get in touch for a consultation and let's discuss how George can support your goals.</p>
+      </div>
+      <a href="#contact" class="btn btn-gold">Book a Consultation <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section class="page" id="page-about" data-title="About George — AK Auditor &amp; Tax Consultant">
+  <div class="page-hero">
+    <div class="shell">
+      <div class="crumb"><a href="#home" data-route="home">Home</a> &nbsp;/&nbsp; About</div>
+      <div class="eyebrow-line"><span style="color:var(--gold-light)">ABOUT AK</span></div>
+      <h1>Grounded in numbers. Driven by trust.</h1>
+      <p class="sub">A single point of contact for audit, tax and financial analytics — so you always know exactly who is looking after your finances.</p>
+    </div>
+  </div>
+
+  <section class="block">
+    <div class="shell grid-2">
+      <div>
+        <div class="eyebrow-line"><div class="rule"></div><span>THE PERSON BEHIND AK</span></div>
+        <h2 style="font-size:clamp(24px,3vw,30px);">Meet George</h2>
+        <p style="color:var(--text-muted); margin-top:16px; font-size:15.5px;">George founded AK Auditor &amp; Tax Consultant to give individuals and small businesses the same calibre of audit, tax and analytical support usually reserved for large firms — without the overhead. He works directly with every client, so the person who signs off your audit is the same person who answers your calls.</p>
+        <p style="color:var(--text-muted); margin-top:14px; font-size:15.5px;">His approach blends traditional audit discipline with modern financial analytics, helping clients not just stay compliant, but actually understand what their numbers are telling them.</p>
+        <ul class="checklist">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 13l4 4L19 7"/></svg>Direct access — no account handlers, no hand-offs</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 13l4 4L19 7"/></svg>Plain-language reporting, not just technical jargon</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 13l4 4L19 7"/></svg>Solutions sized to your business, not a one-size template</li>
+        </ul>
+      </div>
+      <div class="illus-frame">
+        <svg viewBox="0 0 480 380" role="img" aria-label="Illustration of a professional at a desk reviewing financial reports">
+          <title>Professional consultant illustration</title>
+          <rect width="480" height="380" fill="#0B1E38"/>
+          <rect x="0" y="260" width="480" height="120" fill="#0E2140"/>
+          <g transform="translate(150,60)">
+            <circle cx="90" cy="60" r="48" fill="#F4D9A8"/>
+            <path d="M42 60a48 48 0 0196 0v-6c0-30-22-50-48-50s-48 20-48 50z" fill="#241A12"/>
+            <rect x="40" y="102" width="100" height="150" rx="16" fill="#C79A3F"/>
+            <rect x="55" y="118" width="70" height="80" rx="4" fill="#0B1E38"/>
+          </g>
+          <g transform="translate(60,230)">
+            <rect width="150" height="18" rx="2" fill="#1a3660"/>
+            <rect x="20" y="-58" width="110" height="58" rx="2" fill="#F4F1E9"/>
+            <rect x="30" y="-46" width="70" height="6" fill="#0B1E38"/>
+            <rect x="30" y="-34" width="90" height="5" fill="#C7C2B2"/>
+            <rect x="30" y="-24" width="60" height="5" fill="#C7C2B2"/>
+          </g>
+          <g transform="translate(270,225)">
+            <rect width="150" height="10" rx="2" fill="#1a3660"/>
+            <rect x="15" y="-70" width="120" height="70" rx="2" fill="#fff"/>
+            <polyline points="24,-16 40,-34 56,-24 72,-52 88,-42 104,-60" fill="none" stroke="#C79A3F" stroke-width="2.5"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="block tight" style="background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="shell">
+      <div class="eyebrow-line"><div class="rule"></div><span>MISSION &amp; VALUES</span></div>
+      <div class="grid-4">
+        <div><h3 style="font-size:16px; margin-bottom:8px;">Mission</h3><p style="color:var(--text-muted); font-size:14px;">To help individuals and businesses make confident financial decisions through accurate audits, sound tax strategy and clear analysis.</p></div>
+        <div><h3 style="font-size:16px; margin-bottom:8px;">Integrity</h3><p style="color:var(--text-muted); font-size:14px;">Every engagement is handled with honesty and independence, even when the truth is inconvenient.</p></div>
+        <div><h3 style="font-size:16px; margin-bottom:8px;">Accuracy</h3><p style="color:var(--text-muted); font-size:14px;">Numbers are checked, rechecked, and explained — not just delivered.</p></div>
+        <div><h3 style="font-size:16px; margin-bottom:8px;">Partnership</h3><p style="color:var(--text-muted); font-size:14px;">Your goals shape the engagement, from a single filing to ongoing advisory support.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="shell grid-2">
+      <div>
+        <div class="eyebrow-line"><div class="rule"></div><span>EXPERIENCE</span></div>
+        <h2 style="font-size:clamp(22px,3vw,28px);">A track record built one client at a time</h2>
+        <div class="timeline" style="margin-top:24px;">
+          <div class="tl-item"><div class="yr">Year 1–2</div><div><h4>Foundations in audit &amp; assurance</h4><p>Built a core practice in independent audits and assurance reviews for small and growing businesses.</p></div></div>
+          <div class="tl-item"><div class="yr">Year 3–4</div><div><h4>Expanded into tax advisory</h4><p>Added tax planning, compliance and KRA filing support to serve clients end-to-end.</p></div></div>
+          <div class="tl-item"><div class="yr">Year 5+</div><div><h4>Financial analytics &amp; advisory</h4><p>Introduced data-driven financial modelling and business advisory to help clients plan ahead, not just report on the past.</p></div></div>
+        </div>
+      </div>
+      <div>
+        <div class="eyebrow-line"><div class="rule"></div><span>CREDENTIALS</span></div>
+        <h2 style="font-size:clamp(22px,3vw,28px);">Qualifications you can verify</h2>
+        <div style="margin-top:20px;">
+          <div class="credential-row"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M12 3l8 3v6c0 4.5-3.2 8-8 9-4.8-1-8-4.5-8-9V6z"/></svg><div><h4>Certified Public Accountant (CPA-K)</h4><p>Recognised professional accounting qualification, update with your registration details.</p></div></div>
+          <div class="credential-row"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M9 4h9a1 1 0 011 1v14a1 1 0 01-1 1H6a1 1 0 01-1-1V8z"/><path d="M8 4v4H4"/></svg><div><h4>Member, ICPAK</h4><p>Institute of Certified Public Accountants of Kenya membership.</p></div></div>
+          <div class="credential-row"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg><div><h4>KRA-compliant tax practice</h4><p>Up to date with iTax filing procedures and current tax legislation.</p></div></div>
+        </div>
+        <p class="form-note" style="margin-top:14px;">Placeholder credentials — replace with George's actual certifications and registration numbers.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-band">
+    <div class="shell">
+      <div>
+        <div class="eyebrow-line"><div class="rule"></div><span>LET'S WORK TOGETHER</span></div>
+        <h2>Want to know more before you commit?</h2>
+        <p>Reach out for a no-obligation conversation about your business.</p>
+      </div>
+      <a href="#contact" class="btn btn-gold">Talk to George <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SERVICES ================= -->
+<section class="page" id="page-services" data-title="Services — AK Auditor &amp; Tax Consultant">
+  <div class="page-hero">
+    <div class="shell">
+      <div class="crumb"><a href="#home" data-route="home">Home</a> &nbsp;/&nbsp; Services</div>
+      <div class="eyebrow-line"><span style="color:var(--gold-light)">WHAT WE DO</span></div>
+      <h1>Services built around your business, not a template</h1>
+      <p class="sub">From statutory audits to hands-on financial analytics, every engagement starts with understanding what you actually need.</p>
+    </div>
+  </div>
+
+  <section class="block tight">
+    <div class="shell" style="display:flex; flex-direction:column; gap:0;">
+
+      <div class="grid-2" style="padding:36px 0; border-bottom:1px solid var(--border);">
+        <div>
+          <div class="icon-tile"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M9 4h9a1 1 0 011 1v14a1 1 0 01-1 1H6a1 1 0 01-1-1V8z"/><path d="M8 4v4H4"/><circle cx="11" cy="14" r="3"/><path d="M13.5 16.5L16 19"/></svg></div>
+          <h2 style="font-size:22px;">Audit &amp; Assurance</h2>
+          <p style="color:var(--text-muted); margin-top:10px; font-size:15px;">Independent, objective audits that give lenders, investors and regulators confidence in your financial statements — and give you an honest read on your own operations.</p>
+        </div>
+        <ul class="checklist" style="gap:14px;">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 13l4 4L19 7"/></svg>Statutory &amp; external audits</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 13l4 4L19 7"/></svg>Internal control reviews</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 13l4 4L19 7"/></svg>Financial statement assurance</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 13l4 4L19 7"/></svg>NGO &amp; donor-funded project audits</li>
+        </ul>
+      </div>
+
+      <div class="grid-2" style="padding:36px 0; border-bottom:1px solid var(--border);">
+        <div>
+          <div class="icon-tile"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M5 5l14 14M8 5a3 3 0 100 6 3 3 0 000-6zM16 13a3 3 0 100 6 3 3 0 000-6z"/></svg></div>
+          <h2 style="font-size:22px;">Tax Consulting &amp; Compliance</h2>
+          <p style="color:var(--text-muted); margin-top:10px; font-size:15px;">Strategic tax planning and reliable compliance support so you meet every obligation on time, while legally minimizing your tax burden.</p>
+        </div>
+        <ul class="checklist" style="gap:14px;">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 13l4 4L19 7"/></svg>KRA iTax registration &amp; filing</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 13l4 4L19 7"/></svg>VAT, PAYE &amp; income tax returns</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 13l4 4L19 7"/></svg>Tax health checks &amp; dispute support</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 13l4 4L19 7"/></svg>Tax-efficient business structuring</li>
+        </ul>
+      </div>
+
+      <div class="grid-2" style="padding:36px 0; border-bottom:1px solid var(--border);">
+        <div>
+          <div class="icon-tile"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M4 19V9M10 19V5M16 19v-7M20 19H4"/></svg></div>
+          <h2 style="font-size:22px;">Financial Analytics</h2>
+          <p style="color:var(--text-muted); margin-top:10px; font-size:15px;">Your data holds answers. We turn raw figures into dashboards, models and reports that make the next decision obvious.</p>
+        </div>
+        <ul class="checklist" style="gap:14px;">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 13l4 4L19 7"/></svg>Financial modelling &amp; forecasting</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 13l4 4L19 7"/></svg>KPI dashboards &amp; reporting</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 13l4 4L19 7"/></svg>Data cleaning &amp; analysis (Excel &amp; beyond)</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 13l4 4L19 7"/></svg>Business intelligence support</li>
+        </ul>
+      </div>
+
+      <div class="grid-2" style="padding:36px 0;">
+        <div>
+          <div class="icon-tile"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><circle cx="9" cy="8" r="3"/><path d="M2 20c0-3.3 3-6 7-6s7 2.7 7 6"/><circle cx="18" cy="9" r="2.4"/><path d="M15.5 14c2.8.3 5 2.3 5 5"/></svg></div>
+          <h2 style="font-size:22px;">Business Advisory</h2>
+          <p style="color:var(--text-muted); margin-top:10px; font-size:15px;">Practical, judgement-led guidance for owners who want a sounding board that understands both the numbers and the business behind them.</p>
+        </div>
+        <ul class="checklist" style="gap:14px;">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 13l4 4L19 7"/></svg>Budgeting &amp; cash-flow planning</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 13l4 4L19 7"/></svg>Business registration &amp; setup guidance</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 13l4 4L19 7"/></svg>Growth &amp; performance reviews</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 13l4 4L19 7"/></svg>Board &amp; investor reporting support</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="cta-band">
+    <div class="shell">
+      <div>
+        <div class="eyebrow-line"><div class="rule"></div><span>NOT SURE WHERE TO START?</span></div>
+        <h2>Tell us what you're dealing with</h2>
+        <p>A short conversation is usually enough to point you to the right service.</p>
+      </div>
+      <a href="#contact" class="btn btn-gold">Book a Consultation <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= INSIGHTS ================= -->
+<section class="page" id="page-insights" data-title="Insights — AK Auditor &amp; Tax Consultant">
+  <div class="page-hero">
+    <div class="shell">
+      <div class="crumb"><a href="#home" data-route="home">Home</a> &nbsp;/&nbsp; Insights</div>
+      <div class="eyebrow-line"><span style="color:var(--gold-light)">FROM THE DESK OF AK</span></div>
+      <h1>Insights on audit, tax and business finance</h1>
+      <p class="sub">Practical notes to help you stay compliant and make sense of your numbers, written in plain language.</p>
+    </div>
+  </div>
+
+  <section class="block">
+    <div class="shell">
+      <div class="grid-3">
+        <article class="insight-card">
+          <div class="insight-thumb"><svg viewBox="0 0 300 150" width="100%" height="100%"><rect width="300" height="150" fill="#0E2140"/><polyline points="20,110 70,80 120,95 170,50 220,65 270,30" fill="none" stroke="#C79A3F" stroke-width="3"/></svg></div>
+          <div class="insight-body">
+            <div class="insight-cat">TAX</div>
+            <h3>Key KRA filing deadlines every business should track</h3>
+            <p>A running list of the returns and payment dates that catch business owners out most often.</p>
+            <div class="insight-meta">6 min read</div>
+          </div>
+        </article>
+        <article class="insight-card">
+          <div class="insight-thumb"><svg viewBox="0 0 300 150" width="100%" height="100%"><rect width="300" height="150" fill="#0E2140"/><rect x="30" y="70" width="30" height="50" fill="#C79A3F"/><rect x="75" y="50" width="30" height="70" fill="#8FAE8A"/><rect x="120" y="30" width="30" height="90" fill="#C79A3F"/><rect x="165" y="60" width="30" height="60" fill="#8FAE8A"/></svg></div>
+          <div class="insight-body">
+            <div class="insight-cat">FINANCIAL ANALYTICS</div>
+            <h3>Five financial ratios that tell you more than your bank balance</h3>
+            <p>Why liquidity, margin and turnover ratios matter more than the number in your account.</p>
+            <div class="insight-meta">5 min read</div>
+          </div>
+        </article>
+        <article class="insight-card">
+          <div class="insight-thumb"><svg viewBox="0 0 300 150" width="100%" height="100%"><rect width="300" height="150" fill="#0E2140"/><circle cx="150" cy="75" r="42" fill="none" stroke="#C79A3F" stroke-width="10"/><path d="M150 33 A42 42 0 0 1 190 90" fill="none" stroke="#8FAE8A" stroke-width="10"/></svg></div>
+          <div class="insight-body">
+            <div class="insight-cat">AUDIT</div>
+            <h3>What auditors actually look for in an internal control review</h3>
+            <p>A plain-language walkthrough of what happens once your books land on an auditor's desk.</p>
+            <div class="insight-meta">7 min read</div>
+          </div>
+        </article>
+        <article class="insight-card">
+          <div class="insight-thumb"><svg viewBox="0 0 300 150" width="100%" height="100%"><rect width="300" height="150" fill="#0E2140"/><rect x="60" y="40" width="180" height="70" rx="4" fill="#122a4d" stroke="#C79A3F"/><rect x="80" y="55" width="60" height="6" fill="#C79A3F"/><rect x="80" y="70" width="120" height="5" fill="#5B6270"/><rect x="80" y="82" width="90" height="5" fill="#5B6270"/></svg></div>
+          <div class="insight-body">
+            <div class="insight-cat">BUSINESS ADVISORY</div>
+            <h3>Building a cash-flow forecast you'll actually use</h3>
+            <p>A simple structure for a rolling 13-week cash-flow forecast that owners can update themselves.</p>
+            <div class="insight-meta">6 min read</div>
+          </div>
+        </article>
+        <article class="insight-card">
+          <div class="insight-thumb"><svg viewBox="0 0 300 150" width="100%" height="100%"><rect width="300" height="150" fill="#0E2140"/><rect x="40" y="90" width="20" height="30" fill="#C79A3F"/><rect x="70" y="70" width="20" height="50" fill="#8FAE8A"/><rect x="100" y="50" width="20" height="70" fill="#C79A3F"/><rect x="130" y="65" width="20" height="55" fill="#8FAE8A"/><rect x="160" y="40" width="20" height="80" fill="#C79A3F"/></svg></div>
+          <div class="insight-body">
+            <div class="insight-cat">TAX</div>
+            <h3>Turnover tax vs. income tax: which applies to your business?</h3>
+            <p>A quick guide to help small business owners work out which regime they should be filing under.</p>
+            <div class="insight-meta">4 min read</div>
+          </div>
+        </article>
+        <article class="insight-card">
+          <div class="insight-thumb"><svg viewBox="0 0 300 150" width="100%" height="100%"><rect width="300" height="150" fill="#0E2140"/><path d="M40 110 Q100 20 260 60" fill="none" stroke="#C79A3F" stroke-width="3"/><circle cx="260" cy="60" r="5" fill="#8FAE8A"/></svg></div>
+          <div class="insight-body">
+            <div class="insight-cat">FINANCIAL ANALYTICS</div>
+            <h3>From spreadsheet chaos to a dashboard you can trust</h3>
+            <p>How a basic monthly reporting dashboard can replace hours of manual reconciliation.</p>
+            <div class="insight-meta">5 min read</div>
+          </div>
+        </article>
+      </div>
+      <p class="form-note" style="margin-top:24px; text-align:center;">Sample articles — swap in George's own posts as they're written.</p>
+    </div>
+  </section>
+</section>
+
+<!-- ================= RESOURCES ================= -->
+<section class="page" id="page-resources" data-title="Resources — AK Auditor &amp; Tax Consultant">
+  <div class="page-hero">
+    <div class="shell">
+      <div class="crumb"><a href="#home" data-route="home">Home</a> &nbsp;/&nbsp; Resources</div>
+      <div class="eyebrow-line"><span style="color:var(--gold-light)">TOOLS &amp; GUIDES</span></div>
+      <h1>Resources to keep your finances in order</h1>
+      <p class="sub">Guides and checklists George uses with clients. Request any of these and they'll be sent straight to your inbox.</p>
+    </div>
+  </div>
+
+  <section class="block tight">
+    <div class="shell">
+      <div class="grid-3">
+        <div class="resource-card">
+          <div class="resource-top">
+            <div class="icon-tile" style="margin-bottom:0;"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></div>
+          </div>
+          <h3>Kenya Tax Calendar</h3>
+          <p>Every statutory filing and payment deadline for the year, in one printable calendar.</p>
+          <button type="button" class="btn btn-outline-navy" style="margin-top:10px; align-self:flex-start;" onclick="requestResource('Kenya Tax Calendar')">Request Copy</button>
+        </div>
+        <div class="resource-card">
+          <div class="resource-top">
+            <div class="icon-tile" style="margin-bottom:0;"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></div>
+          </div>
+          <h3>Audit Readiness Checklist</h3>
+          <p>The documents and records to have in order before your next audit begins.</p>
+          <button type="button" class="btn btn-outline-navy" style="margin-top:10px; align-self:flex-start;" onclick="requestResource('Audit Readiness Checklist')">Request Copy</button>
+        </div>
+        <div class="resource-card">
+          <div class="resource-top">
+            <div class="icon-tile" style="margin-bottom:0;"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M4 19V9M10 19V5M16 19v-7M20 19H4"/></svg></div>
+          </div>
+          <h3>Financial Ratio Cheat Sheet</h3>
+          <p>The key liquidity, profitability and efficiency ratios, with plain-language explanations.</p>
+          <button type="button" class="btn btn-outline-navy" style="margin-top:10px; align-self:flex-start;" onclick="requestResource('Financial Ratio Cheat Sheet')">Request Copy</button>
+        </div>
+        <div class="resource-card">
+          <div class="resource-top">
+            <div class="icon-tile" style="margin-bottom:0;"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M5 5l14 14M8 5a3 3 0 100 6 3 3 0 000-6zM16 13a3 3 0 100 6 3 3 0 000-6z"/></svg></div>
+          </div>
+          <h3>New Business Registration Guide</h3>
+          <p>A step-by-step overview of registering a business and getting tax-compliant from day one.</p>
+          <button type="button" class="btn btn-outline-navy" style="margin-top:10px; align-self:flex-start;" onclick="requestResource('New Business Registration Guide')">Request Copy</button>
+        </div>
+        <div class="resource-card">
+          <div class="resource-top">
+            <div class="icon-tile" style="margin-bottom:0;"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2"/></svg></div>
+          </div>
+          <h3>Payroll &amp; PAYE Basics</h3>
+          <p>A short guide to setting up compliant payroll, statutory deductions and payslips.</p>
+          <button type="button" class="btn btn-outline-navy" style="margin-top:10px; align-self:flex-start;" onclick="requestResource('Payroll &amp; PAYE Basics')">Request Copy</button>
+        </div>
+        <div class="resource-card">
+          <div class="resource-top">
+            <div class="icon-tile" style="margin-bottom:0;"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><circle cx="9" cy="8" r="3"/><path d="M2 20c0-3.3 3-6 7-6s7 2.7 7 6"/><circle cx="18" cy="9" r="2.4"/><path d="M15.5 14c2.8.3 5 2.3 5 5"/></svg></div>
+          </div>
+          <h3>Budget Planning Template</h3>
+          <p>A simple annual budget structure business owners can adapt to their own operations.</p>
+          <button type="button" class="btn btn-outline-navy" style="margin-top:10px; align-self:flex-start;" onclick="requestResource('Budget Planning Template')">Request Copy</button>
+        </div>
+      </div>
+
+      <div class="card" id="resourceRequestForm" style="margin-top:44px; max-width:640px; padding:34px;">
+        <h3 style="font-size:19px; margin-bottom:6px;">Request a resource</h3>
+        <p style="color:var(--text-muted); font-size:14px; margin-bottom:22px;">Pick a guide, add your details, and it'll be emailed to you.</p>
+        <div class="success-box" id="resourceFormSuccess">Thanks — your request has been sent. You'll hear back by email shortly.</div>
+        <form id="resourceForm" action="https://formsubmit.co/vanywinner@gmail.com" method="POST" target="_blank" novalidate>
+          <input type="hidden" name="_subject" value="Website resource request — AK site">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_next" value="https://claude.ai/artifact/QwDKkpzuv23CwzsnY7rEGc?sent=resources#resources">
+          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+          <div class="form-field">
+            <label for="rf-resource">Which resource? *</label>
+            <select id="rf-resource" name="Resource requested" required>
+              <option value="">Select a resource</option>
+              <option>Kenya Tax Calendar</option>
+              <option>Audit Readiness Checklist</option>
+              <option>Financial Ratio Cheat Sheet</option>
+              <option>New Business Registration Guide</option>
+              <option>Payroll &amp; PAYE Basics</option>
+              <option>Budget Planning Template</option>
+            </select>
+            <div class="error-msg" id="err-rf-resource">Please choose a resource.</div>
+          </div>
+          <div class="form-row-2">
+            <div class="form-field">
+              <label for="rf-name">Full name *</label>
+              <input type="text" id="rf-name" name="Name" required>
+              <div class="error-msg" id="err-rf-name">Please enter your name.</div>
+            </div>
+            <div class="form-field">
+              <label for="rf-email">Email *</label>
+              <input type="email" id="rf-email" name="Email" required>
+              <div class="error-msg" id="err-rf-email">Please enter a valid email address.</div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-gold" style="width:100%; justify-content:center;">Send Request</button>
+          <p class="form-note" style="margin-top:12px;">Requests are emailed directly — no account or sign-up needed.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="block tight" style="background:var(--surface); border-top:1px solid var(--border);">
+    <div class="shell" style="max-width:820px;">
+      <div class="eyebrow-line"><div class="rule"></div><span>FREQUENTLY ASKED</span></div>
+      <h2 style="font-size:clamp(22px,3vw,28px); margin-bottom:10px;">Common questions</h2>
+      <div id="faqList">
+        <div class="faq-item open">
+          <button class="faq-q" aria-expanded="true">How often should my business be audited?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="faq-a"><p>Most registered companies and NGOs need an annual audit, but the right frequency depends on your regulatory requirements, funding conditions and size. George can advise what applies to you.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">Can you help if I'm already behind on tax filings?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="faq-a"><p>Yes. Catching up on overdue KRA filings and resolving penalties is one of the most common engagements — the sooner you reach out, the more options are usually available.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">Do you work with businesses outside Kenya?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="faq-a"><p>Financial analytics and advisory work can be done remotely for clients anywhere. Kenyan tax and audit services are focused on Kenya-registered entities.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">How is pricing structured?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="faq-a"><p>Pricing depends on the scope and complexity of the work. Get in touch with a short description of what you need and George will send a clear, upfront quote.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="page" id="page-contact" data-title="Contact — AK Auditor &amp; Tax Consultant">
+  <div class="page-hero">
+    <div class="shell">
+      <div class="crumb"><a href="#home" data-route="home">Home</a> &nbsp;/&nbsp; Contact</div>
+      <div class="eyebrow-line"><span style="color:var(--gold-light)">GET IN TOUCH</span></div>
+      <h1>Let's talk about your finances</h1>
+      <p class="sub">Reach out directly, or send a message below and George will get back to you.</p>
+    </div>
+  </div>
+
+  <section class="block">
+    <div class="shell contact-grid">
+      <div>
+        <div class="contact-method">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.3 1.8.6 2.7a2 2 0 01-.5 2.1L8 9.8a16 16 0 006 6l1.3-1.2a2 2 0 012.1-.5c.9.3 1.8.5 2.7.6a2 2 0 011.9 2.2z"/></svg></div>
+          <div><h4>Phone</h4><a href="tel:+254746369087">+254 746 369 087</a></div>
+        </div>
+        <div class="contact-method">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6"><path d="M20.5 11.9A8.4 8.4 0 1010 20.3a8.4 8.4 0 007.1-3.9l3.4 1z"/></svg></div>
+          <div><h4>WhatsApp</h4><a href="https://wa.me/254746369087" target="_blank" rel="noopener">Chat with George</a></div>
+        </div>
+        <div class="contact-method">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div>
+          <div><h4>Email</h4><a href="mailto:vanywinner@gmail.com">vanywinner@gmail.com</a></div>
+        </div>
+        <div class="contact-method">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M12 21s-7-6-7-11a7 7 0 0114 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+          <div><h4>Based in</h4><div class="val">Kenya — remote &amp; on-site consultations available</div></div>
+        </div>
+        <div class="contact-method" style="border-bottom:none;">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+          <div><h4>Business hours</h4><div class="val">Mon – Fri: 8:00 AM – 5:00 PM<br>Sat: 9:00 AM – 1:00 PM</div></div>
+        </div>
+      </div>
+
+      <div class="card" style="padding:34px;">
+        <h3 style="font-size:19px; margin-bottom:6px;">Send a message</h3>
+        <p style="color:var(--text-muted); font-size:14px; margin-bottom:22px;">Fields marked * are required.</p>
+        <div class="success-box" id="formSuccess">Thanks — your message has been sent. George will get back to you shortly.</div>
+        <form id="contactForm" action="https://formsubmit.co/vanywinner@gmail.com" method="POST" target="_blank" novalidate>
+          <input type="hidden" name="_subject" value="New website enquiry — AK site">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_next" value="https://claude.ai/artifact/QwDKkpzuv23CwzsnY7rEGc?sent=contact#contact">
+          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+          <div class="form-row-2">
+            <div class="form-field">
+              <label for="cf-name">Full name *</label>
+              <input type="text" id="cf-name" name="Name" required>
+              <div class="error-msg" id="err-name">Please enter your name.</div>
+            </div>
+            <div class="form-field">
+              <label for="cf-phone">Phone</label>
+              <input type="tel" id="cf-phone" name="Phone">
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="cf-email">Email *</label>
+            <input type="email" id="cf-email" name="Email" required>
+            <div class="error-msg" id="err-email">Please enter a valid email address.</div>
+          </div>
+          <div class="form-field">
+            <label for="cf-service">Service of interest</label>
+            <select id="cf-service" name="Service of interest">
+              <option>Audit &amp; Assurance</option>
+              <option>Tax Consulting &amp; Compliance</option>
+              <option>Financial Analytics</option>
+              <option>Business Advisory</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="cf-message">Message *</label>
+            <textarea id="cf-message" name="Message" rows="5" required></textarea>
+            <div class="error-msg" id="err-message">Please tell us a little about what you need.</div>
+          </div>
+          <button type="submit" class="btn btn-gold" style="width:100%; justify-content:center;">Send Message</button>
+          <p class="form-note" style="margin-top:12px;">Messages are emailed directly — no account or sign-up needed.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+</section>
+
+</main>
+
+<footer class="site-footer" id="siteFooter">
+  <div class="shell footer-grid">
+    <div class="footer-brand">
+      <div class="name">AK Auditor &amp; Tax Consultant</div>
+      <p>Assurance, tax and financial analytics services built on trust, accuracy and strategy.</p>
+      <div class="footer-social">
+        <a href="https://wa.me/254746369087" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="#fff"><path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.1.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.3 0-.5s-.6-1.5-.8-2c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s1 2.5 1.1 2.7c.1.2 2 3 4.7 4.2.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 1.9-1.4.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3z"/><path d="M12 2a10 10 0 00-8.5 15.2L2 22l4.9-1.5A10 10 0 1012 2zm0 18.2c-1.6 0-3.1-.4-4.5-1.2l-.3-.2-3 .9.9-2.9-.2-.3A8.2 8.2 0 1112 20.2z"/></svg></a>
+        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="#fff"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.5-.95 1.8-1.95 3.7-1.95 4 0 4.7 2.6 4.7 6v6.25h-4v-5.5c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.6H9z"/></svg></a>
+        <a href="mailto:vanywinner@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
+      </div>
+    </div>
+    <div>
+      <h4>NAVIGATE</h4>
+      <ul>
+        <li><a href="#home" data-route="home">Home</a></li>
+        <li><a href="#about" data-route="about">About</a></li>
+        <li><a href="#services" data-route="services">Services</a></li>
+        <li><a href="#insights" data-route="insights">Insights</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>MORE</h4>
+      <ul>
+        <li><a href="#resources" data-route="resources">Resources</a></li>
+        <li><a href="#contact" data-route="contact">Contact</a></li>
+        <li><a href="#contact" data-route="contact">Book a Consultation</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>CONTACT</h4>
+      <ul>
+        <li><a href="tel:+254746369087">+254 746 369 087</a></li>
+        <li><a href="https://wa.me/254746369087">WhatsApp George</a></li>
+        <li><a href="mailto:vanywinner@gmail.com">vanywinner@gmail.com</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="shell footer-bottom">
+    <span>&copy; <span id="yr"></span> AK Auditor &amp; Tax Consultant. All rights reserved.</span>
+    <span>Compliance today. Growth tomorrow.</span>
+  </div>
+  <div class="shell" style="text-align:center; margin-top:16px;">
+    <a href="https://wa.me/254715672799" target="_blank" rel="noopener" style="font-size:12px; color:#8A93A3; transition:color .15s;" onmouseover="this.style.color='var(--gold-light)'" onmouseout="this.style.color='#8A93A3'">Developed by Vanywinner Enterprises</a>
+  </div>
+</footer>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+var menuToggle = document.getElementById('menuToggle');
+var mobilePanel = document.getElementById('mobilePanel');
+var closeMenu = document.getElementById('closeMenu');
+var scrim = document.getElementById('scrim');
+function openMenu(){ mobilePanel.classList.add('open'); scrim.classList.add('open'); menuToggle.setAttribute('aria-expanded','true'); }
+function closeMenuFn(){ mobilePanel.classList.remove('open'); scrim.classList.remove('open'); menuToggle.setAttribute('aria-expanded','false'); }
+menuToggle.addEventListener('click', openMenu);
+closeMenu.addEventListener('click', closeMenuFn);
+scrim.addEventListener('click', closeMenuFn);
+document.querySelectorAll('.mobile-panel a').forEach(function(a){ a.addEventListener('click', closeMenuFn); });
+
+function route(){
+  var hash = (location.hash || '#home').replace('#','');
+  var pages = document.querySelectorAll('.page');
+  var found = false;
+  pages.forEach(function(p){
+    var match = p.id === 'page-' + hash;
+    p.classList.toggle('active', match);
+    if (match) { found = true; document.title = p.dataset.title || document.title; }
+  });
+  if (!found) {
+    document.getElementById('page-home').classList.add('active');
+    document.title = document.getElementById('page-home').dataset.title;
+  }
+  document.querySelectorAll('[data-route]').forEach(function(a){
+    a.classList.toggle('active', a.dataset.route === hash || (!found && a.dataset.route === 'home'));
+  });
+  window.scrollTo({top:0, behavior:'instant' in window ? 'instant' : 'auto'});
+}
+window.addEventListener('hashchange', route);
+route();
+
+(function(){
+  var params = new URLSearchParams(location.search);
+  var sent = params.get('sent');
+  if (sent === 'contact') {
+    var box = document.getElementById('formSuccess');
+    if (box) box.classList.add('show');
+  } else if (sent === 'resources') {
+    var box2 = document.getElementById('resourceFormSuccess');
+    if (box2) box2.classList.add('show');
+  }
+  if (sent && history.replaceState) {
+    var cleanUrl = location.pathname + location.hash;
+    history.replaceState(null, '', cleanUrl);
+  }
+})();
+
+document.querySelectorAll('.faq-q').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var item = btn.closest('.faq-item');
+    var isOpen = item.classList.contains('open');
+    item.classList.toggle('open', !isOpen);
+    btn.setAttribute('aria-expanded', String(!isOpen));
+  });
+});
+
+var contactForm = document.getElementById('contactForm');
+if (contactForm) {
+  contactForm.addEventListener('submit', function(e){
+    var name = document.getElementById('cf-name');
+    var email = document.getElementById('cf-email');
+    var message = document.getElementById('cf-message');
+    var errName = document.getElementById('err-name');
+    var errEmail = document.getElementById('err-email');
+    var errMessage = document.getElementById('err-message');
+    var valid = true;
+
+    errName.classList.remove('show');
+    errEmail.classList.remove('show');
+    errMessage.classList.remove('show');
+
+    if (!name.value.trim()) { errName.classList.add('show'); valid = false; }
+    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email.value.trim() || !emailPattern.test(email.value.trim())) { errEmail.classList.add('show'); valid = false; }
+    if (!message.value.trim()) { errMessage.classList.add('show'); valid = false; }
+
+    if (!valid) { e.preventDefault(); return; }
+    // Valid: submission opens in a new tab (target="_blank"); show success here immediately
+    var successBox = document.getElementById('formSuccess');
+    successBox.classList.add('show');
+    setTimeout(function(){ contactForm.reset(); }, 50);
+  });
+}
+
+function requestResource(name){
+  var select = document.getElementById('rf-resource');
+  select.value = name;
+  document.getElementById('resourceRequestForm').scrollIntoView({behavior:'smooth', block:'start'});
+  document.getElementById('rf-name').focus({preventScroll:true});
+}
+
+var resourceForm = document.getElementById('resourceForm');
+if (resourceForm) {
+  resourceForm.addEventListener('submit', function(e){
+    var resource = document.getElementById('rf-resource');
+    var name = document.getElementById('rf-name');
+    var email = document.getElementById('rf-email');
+    var errResource = document.getElementById('err-rf-resource');
+    var errName = document.getElementById('err-rf-name');
+    var errEmail = document.getElementById('err-rf-email');
+    var valid = true;
+
+    errResource.classList.remove('show');
+    errName.classList.remove('show');
+    errEmail.classList.remove('show');
+
+    if (!resource.value) { errResource.classList.add('show'); valid = false; }
+    if (!name.value.trim()) { errName.classList.add('show'); valid = false; }
+    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email.value.trim() || !emailPattern.test(email.value.trim())) { errEmail.classList.add('show'); valid = false; }
+
+    if (!valid) { e.preventDefault(); return; }
+    // Valid: let the form submit naturally to formsubmit.co
+  });
+}
+</script>
+</body>
+</html>
